@@ -1,0 +1,193 @@
+package hoskey.bcs345.hwk.purchases.business;
+
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Scanner;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+/**
+ * 
+ * @author Alejandro
+ *
+ */
+public class Address {
+
+	private String number;
+	private String street;
+	private String city;
+	private String state;
+	private String zip;
+	/**
+	 * Initialize the private variables
+	 */
+	public Address(){
+		number = null;
+		street = null;
+		city = null;
+		state = null;
+		zip = null;
+	}
+
+	/**
+	 * Parameters passed to the Constructor
+	 * @param number
+	 * @param street
+	 * @param city
+	 * @param state
+	 * @param zip
+	 */
+	public Address(String num, String st, String c, String sta, String z){
+
+		number = num;
+		street = st;
+		city = c;
+		state= sta;
+		zip = z;
+
+	}
+	/**
+	 * setNumber method accesses the number variable
+	 * @param newNum
+	 */
+	public void setNumber(String newNum){
+
+		number = newNum;
+	}
+	/**
+	 * setStreet method accesses the street variable
+	 * @param newSt
+	 */
+	public void setStreet(String newSt){
+
+		street = newSt;
+	}
+	/**
+	 * setCity method accesses the ncity variable
+	 * @param newC
+	 */
+	public void setCity(String newC){
+
+		city = newC;
+	}
+	/**
+	 * setState method accesses the state variable
+	 * @param newSta
+	 */
+	public void setState(String newSta){
+
+		state = newSta;
+	}
+	/**
+	 * setZip method accesses the zip variable
+	 * @param newZ
+	 */
+	public void setZip(String newZ){
+
+		zip = newZ;
+	}
+	/**
+	 * The getNumber method returns the number variable
+	 * @return number
+	 */
+	public String getNumber()
+	{
+
+		return number;
+	}
+	/**
+	 * The getStreet method returns the street variable
+	 * @return
+	 */
+	public String getStreet()
+	{
+		return street;
+	}
+	/**
+	 * The getCity method returns the city variable
+	 * @return city
+	 */
+	public String getCity()
+	{
+		return city;
+	}
+	/**
+	 * The getState method returns the state variable
+	 * @return state
+	 */
+	public String getState()
+	{
+		return state;
+	}
+	/**
+	 * The getZip method returns the zip variable
+	 * @return zip 
+	 */
+	public String getZip(){
+		return zip;
+	}
+	/**
+	 * Write method used to write to a text file
+	 * @param ps
+	 */
+	public void Write(PrintStream ps)
+	{
+		try {
+			ps = new PrintStream("newfileAddress.txt");
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}
+		ps.printf("%s",number);
+		ps.printf("\r\n%s",street);
+		ps.printf("\r\n%s",city);
+		ps.printf("\r\n%s",state);
+		ps.printf("\r\n%s",zip);
+
+	}
+	/**
+	 * Read method used to read to textFile
+	 * @param s
+	 */
+	public void Read(Scanner s)
+	{
+
+		number = s.nextLine();
+		street = s.nextLine();
+		city = s.nextLine();
+		state = s.nextLine();
+		zip = s.nextLine();
+	}
+	/**
+	 * JSON method would return as a JSON String
+	 * @return jsonText
+	 * Throws a JSON exception handle
+	 * @throws JSONException 
+	 */
+	public String GetJSON() throws JSONException
+	{
+		JSONObject json = new JSONObject();
+		json.put("number", "10");
+		json.put("street","Broadway");
+		json.put("city","New York");
+		json.put("state","NY");
+		json.put("zip","10001");
+
+		String jsonText = json.toString();
+
+		return jsonText;	
+	}
+	/**
+	 * toString Method overrides to display in a different format
+	 * @return s
+	 */
+	@Override
+	public String toString()
+	{
+
+		String s = number + " " + street + ", " + city + ", " + state + " " + zip;
+
+		return s;
+	}
+}

@@ -1,0 +1,120 @@
+package hoskey.bcs345.hwk.purchases.business;
+
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Scanner;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * 
+ * @author Alejandro
+ *
+ */
+public class Product {
+	private String description;
+	private double price;
+
+	/**
+	 * Initialize the private variables
+	 */
+	public Product(){
+		description = null;
+		price = 0;
+	}
+	/**
+	 * Parameters passed to the Constructor
+	 * @param d
+	 * @param p
+	 */
+	public Product(String d, double p)
+	{
+		description = d;
+		price = p;
+	}
+	/**
+	 * setDescription method accesses the description variable
+	 * @param newDescp
+	 */
+	public void setDescription(String newDescp)
+	{
+
+		description= newDescp;
+	}
+	/**
+	 * setPrice method accesses the price variable
+	 * @param newPrice
+	 */
+	public void setPrice(double newPrice)
+	{
+
+		price = newPrice;
+	}
+	/**
+	 * The getDescription method returns the description variable
+	 * @return description
+	 */
+	public String getDescription()
+	{
+		return description;
+	}
+	/**
+	 * The getPrice method returns the price variable
+	 * @return price
+	 */
+	public double getPrice()
+	{
+		return price;
+	}
+	/**
+	 * Write method used to write to a text file
+	 * @param ps
+	 */
+	public void Write(PrintStream ps)
+	{
+		try {
+			ps = new PrintStream("newfileProduct.txt");
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}
+		ps.printf("%s",description);
+		ps.printf("\r\n%f",price);
+	}
+	/**
+	 * Read method used to read to textFile
+	 * @param s
+	 */
+	public void Read(Scanner s)
+	{
+
+		description = s.nextLine();
+		price = s.nextDouble();
+	}
+	/**
+	 * JSON method would return as a JSON String
+	 * @return jsonText
+	 * Throws a JSON exception handle
+	 * @throws JSONException
+	 */
+	public String GetJSON() throws JSONException{
+		
+		JSONObject json = new JSONObject();
+		json.put("description", "Samsung Galaxy s7");
+		json.put("price", 199.99);
+		
+		String jsonText = json.toString();
+		
+		return jsonText;
+	}
+	/**toString Method overrides to display in a different format
+	 * @return s
+	 */
+	@Override
+	public String toString()
+	{
+		String s = String.format("%s, %.2f", description, price);
+		return s;
+	}
+	
+}
